@@ -83,7 +83,7 @@ const fetchById = (id) => {
       })
       .then((data) => {
         obj = data;
-        setToLocal(obj);
+        addToLocalStorage(obj);
       })
       .catch((error) => {
         console.error("FETCH ERROR:", error);
@@ -91,7 +91,7 @@ const fetchById = (id) => {
   };
   
 //setting it to local storage to access it from the details page  
-function setToLocal(obj) {
+function addToLocalStorage(obj) {
     const a = obj.meals;
     localStorage.setItem("mealsDesc", JSON.stringify(a[0]));
     window.location.href = "./meal.html";
@@ -116,14 +116,14 @@ const addToFavourites = (id) =>{
       })
       .then((data) => {
         obj = data;
-        setTofavArray(obj,id);
+        addTofavArray(obj,id);
       })
       .catch((error) => {
         console.error("FETCH ERROR:", error);
       });
 }   
 
-function setTofavArray(obj,id){
+function addTofavArray(obj,id){
   const { meals } = obj;
   let isPresent = -1;
   for (elem of meals) {

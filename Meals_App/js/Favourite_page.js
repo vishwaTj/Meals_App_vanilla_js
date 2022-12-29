@@ -64,7 +64,9 @@ if(mealDescription.length!=0){
       favourites.splice(res, 1);
       localStorage.setItem("fav_Array", JSON.stringify(favourites));
     }
-    location.reload();
+    ItemImage.addEventListener("transitionend", function () {
+      location.reload();
+    });
     }
 }
   else{

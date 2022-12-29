@@ -111,7 +111,7 @@ h1{
     background-color: rgb(37, 37, 37);
     padding: 15px;
     overflow: hidden;
-    transition: all 0.5s ease;
+    transition: all 0.2s ease;
 }
 
 #item img{
@@ -178,6 +178,6 @@ h1{
 }
 
 .Drop-item {
-    transform: translatex(8rem) rotateZ(120deg);
+    transform: translateX(20rem) rotateZ(120deg);
     opacity: 0;
 }
