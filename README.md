@@ -17,12 +17,12 @@ code is divided into slectors,eventlisteners and functions
 fetchAPI -- to fetch data from API
 generateHTML --- to generate the recipe cards for the grid
 
-fetchBYId -- fetch meal data from a card when you click on more details and store in local storage to access it in details page
+fetchMealById -- fetch meal data from a card when you click on more details and store in local storage to access it in details page
 
 addToLocalStorage -- store the meals by ID  an array
 
 addToFavourites -- Create favourites array and also create new favourite array in local storage to access in favourites array
-   { includes adding to fav array and also delete from favourite array }
+   { includes fetching the fav array and also delete from favourite array from local storage functions called from within }
    
 details.html
 html page contains code for navigation bar and Instructions for recipe and also image
