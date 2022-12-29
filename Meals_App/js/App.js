@@ -6,7 +6,7 @@ const ViewRecipe = document.querySelector('.view-button');
 const favButton = document.querySelector('.fav-button');
 const FaovouritesButton = document.querySelector('#Favourites');
 const HomePageBtn = document.querySelector('#Home-Page');
-let favText="♡";
+let favIcon="♡";
 
 
 const Recipebox = document.querySelector('.Recipe-box');
@@ -43,17 +43,17 @@ async function fetchAPI (query){
 
 function generateHTML(results){
     console.log(results); 
-    let generatedHTML = '';
+    let HTMLContent = '';
     if(results){
       results.map(result => {
-        generatedHTML +=
+        HTMLContent +=
         `<div class="item">
            <img src="${result.strMealThumb}" alt="">
            <div class="flex-container">
              <h1 class="title">${result.strMeal}</h1>
              <div class="buttons">
-               <a href = "javascript:void(0)" class="view-button" onclick= "fetchById(${result.idMeal})" data-id =${result.idMeal} starget="_blank">view Recipe</a>
-               <a class="fav-button" onclick = addToFavourites(${result.idMeal}) fav-data-id = ${result.idMeal}>${favText}</a>
+               <a href = "javascript:void(0)" class="view-button" onclick= "fetchMealById(${result.idMeal})" data-id =${result.idMeal} starget="_blank">view Recipe</a>
+               <a class="fav-button" onclick = addToFavourites(${result.idMeal}) fav-data-id = ${result.idMeal}>${favIcon}</a>
              </div>  
            </div>
          </div>
@@ -61,17 +61,17 @@ function generateHTML(results){
       });
     }
     else{
-        generatedHTML +=
-        `<div>
+        HTMLContent +=
+        `<div id="no-Result">
            <h2> "Sorry No results were found"</h2>
          </div>
         `
     }
-    searchResultDiv.innerHTML = generatedHTML;
+    searchResultDiv.innerHTML = HTMLContent;
 
 }
 
-const fetchById = (id) => {
+const fetchMealById = (id) => {
     url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id;
     fetch(url)
       .then((response) => {
@@ -103,8 +103,8 @@ function addToLocalStorage(obj) {
 const favouritesArray = [];
 const addToFavourites = (id) =>{
   favBtn = document.querySelector('[fav-data-id = "' + id + '"]');
-  favText="♥"
-  favBtn.innerHTML= favText;
+  favIcon="♥"
+  favBtn.innerHTML= favIcon;
   url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id;
     fetch(url)
       .then((response) => {
@@ -128,7 +128,7 @@ function addTofavArray(obj,id){
   let isPresent = -1;
   for (elem of meals) {
     if (elem["idMeal"] == id) {
-      const favourites = getFavourites();
+      const favourites = getFavArray();
       favourites.forEach((e) => {
         // console.log(e);
         if (e["idMeal"] == id) {
@@ -140,14 +140,14 @@ function addTofavArray(obj,id){
         favouritesArray.push(elem);
         localStorage.setItem("fav_Array", JSON.stringify(favouritesArray));
       } else {
-        deletefromStorage(id);
+        deletefromFavArray(id);
       }
     }
     }
 }
 
 // Taking intake of 
-function getFavourites() {
+function getFavArray() {
   let favourites = [];
   const isPresent = localStorage.getItem("fav_Array");
   if (isPresent) {
@@ -156,9 +156,8 @@ function getFavourites() {
   return favourites;
 }
 
-function deletefromStorage(id) {
-  const favourites = getFavourites();
-  console.log('hello');
+function deletefromFavArray(id) {
+  const favourites = getFavArray();
   console.log(favourites);
   res = 0;
   favourites.forEach((elem) => {

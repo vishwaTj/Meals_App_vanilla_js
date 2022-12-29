@@ -100,9 +100,9 @@ section{
     margin: 0 auto;
 }
 
-.container .brand{
+.container .Page-header{
     text-align:center;
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: whitesmoke;
     margin-bottom: 30px;
 }
@@ -112,7 +112,7 @@ section{
    max-width: 400px;
    margin: 20px auto; 
    border-radius:4px;
-   background-color: rgb(223,223,223);
+   background-color: white;
 }
 
 .Input-Section input[type='text']{
@@ -220,7 +220,7 @@ section{
     .search-result{
         grid-gap: 10px;
     }
-    .container .brand{
+    .container .Page-header{
 
       font-size: 4rem;
     }
@@ -234,3 +234,10 @@ section{
     }
 }
 
+
+/* *********************** no result *********************** */
+
+#no-Result{
+    text-align: center;
+    color: aliceblue;
+}

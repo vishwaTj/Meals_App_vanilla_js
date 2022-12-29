@@ -19,24 +19,24 @@ FaovouritesButton.addEventListener('click',()=>{
 const mealdesc = localStorage.getItem("fav_Array");
 const mealDescription = JSON.parse(mealdesc);
 
-let generatedHTML='';
-let favText="♥";
+let HTMLContent='';
+let favIcon="♥";
 if(mealDescription.length!=0){
   mealDescription.map(result => {
      console.log(result);
-     generatedHTML +=
-       `<div id="item">
+     HTMLContent +=
+       `<div id=${result.idMeal} class="item">
          <img src="${result.strMealThumb}" alt="">
          <div class="flex-container">
           <h1 class="title">${result.strMeal}</h1>
           <div class="buttons">
             <a href = "javascript:void(0)" class="view-button" onclick= "fetchById(${result.idMeal})" data-id =${result.idMeal} starget="_blank">view Recipe</a>
-            <a class="fav-button"  onclick = deletefromStorage(${result.idMeal}) fav-data-id = ${result.idMeal}>${favText}</a>
+            <a class="fav-button"  onclick = deletefromStorage(${result.idMeal}) fav-data-id = ${result.idMeal}>${favIcon}</a>
           </div>  
          </div>
         </div>
        `});
-  searchResultDiv.innerHTML = generatedHTML;
+  searchResultDiv.innerHTML = HTMLContent;
 
   function getFavourites() {
     let favourites = [];
@@ -48,7 +48,7 @@ if(mealDescription.length!=0){
   }
 
   function deletefromStorage(id) {
-    const ItemImage=document.querySelector('#item');
+    const ItemImage=document.querySelector('[id = "' + id + '"]');
     const favourites = getFavourites();
     console.log(favourites);
     res = 0;
@@ -70,7 +70,7 @@ if(mealDescription.length!=0){
     }
 }
   else{
-    generatedHTML+=`
+    HTMLContent+=`
        <div class="NoItems">
            <h2> You dont have any Favourites, Go back and make up your mind !!! </h2>
            <div> 
@@ -79,5 +79,5 @@ if(mealDescription.length!=0){
       </div>
     
     `
-    searchResultDiv.innerHTML = generatedHTML;
+    searchResultDiv.innerHTML = HTMLContent;
 }
